@@ -1,13 +1,20 @@
 import smtplib
 from email.mime.text import MIMEText
 import os
+import pandas as pd
 from dotenv import load_dotenv
 
 load_dotenv()
 
+# os.getenv('PATH')
+path = ""
+recipients_excel = pd.read_excel(path)
 subject = "Email Subject"
 body = "This is the body of the text message"
-recipients = ["eitanluc@gmail.com", "eitanluc@gmail.com"]
+recipients = []
+for  destino in recipients_excel["Email"]:
+    if pd.notna(destino):
+        recipients.append(destino)
 sender = os.getenv('GMAIL_SENDER')
 password = os.getenv('GMAIL_PASSWORD')
 
