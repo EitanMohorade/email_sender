@@ -1,9 +1,26 @@
-import travel_data as email
+import smtplib
+from email.mime.text import MIMEText
+import os
+from dotenv import load_dotenv
 
-path_txt = 'C:/Users/Lochofo/Desktop/PAGINAS/email_sender/Include/email.txt'
+load_dotenv()
 
-destinatarios = ["eitanluc@gmail.com"]
+subject = "Email Subject"
+body = "This is the body of the text message"
+recipients = ["eitanluc@gmail.com", "eitanluc@gmail.com"]
+sender = os.getenv('GMAIL_SENDER')
+password = os.getenv('GMAIL_PASSWORD')
 
-datos = email.usuario_contrasenia(path_txt)
 
-email.enviar_mail(datos[0], datos[1], "prueba asunto", "preguba mensaje", destinatarios)
+def send_email(subject, body, sender, recipients, password):
+    msg = MIMEText(body)
+    msg['Subject'] = subject
+    msg['From'] = sender
+    msg['To'] = ', '.join(recipients)
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
+       smtp_server.login(sender, password)
+       smtp_server.sendmail(sender, recipients, msg.as_string())
+    print("Message sent!")
+
+
+send_email(subject, body, sender, recipients, password)

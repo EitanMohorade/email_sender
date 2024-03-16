@@ -8,15 +8,15 @@ assignees: ''
 ---
 
 #### Descripción
-ej.
+
 
 #### Objetivos
-- ej.
-- ej.
+- 
+- 
 
 #### Tareas
-- [ ] tarea ej.
-- [ ] tarea ej.
+- [ ] 
+- [ ] 
 
 #### Consideraciones Adicionales
--  ej.
+- 
